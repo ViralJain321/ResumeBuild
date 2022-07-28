@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\Admin;
-use App\Http\Controllers\Admin\AdminController;
+// use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/admin/dashboard" , [AdminController::class , 'dashboard']);
+
+
+
+//Admin route group
+
+Route::prefix("/admin")->namespace("App\Http\Controllers\Admin")->group(function(){
+    
+
+Route::match(['GET' , 'POST'] , "login" , 'AdminController@login');
+
+Route::group(['middleware' => 'admin'] , function(){
+    Route::get("dashboard" , 'AdminController@dashboard')->name('admin.dashboard');
+
+    Route::get("logout" ,  'AdminController@logout')->name('admin.logout');
+});
+
+
+});
+

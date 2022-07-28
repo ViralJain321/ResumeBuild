@@ -39,17 +39,9 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  @include('admin.layouts.header')
-
-  <!-- ======= Sidebar ======= -->
-  @include('admin.layouts.sidebar')  
-
   <!-- ========== MainContent ======== -->
   @yield('content')
 
-  <!-- ======= Footer ======= -->
-  @include('admin.layouts.footer')
 
   <a href="{{ url('admin/#') }}" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
