@@ -39,7 +39,7 @@
 
 <body> --}}
 
-@extends('admin.layouts.login_layout')
+@extends('admin.layouts.loginLayout')
 @section('content')
     <main>
         <div class="container">

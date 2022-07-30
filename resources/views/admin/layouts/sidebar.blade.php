@@ -9,21 +9,23 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+      
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
+            <a href="/admin/content/hero">
+              <i class="bi bi-circle"></i><span>Hero</span>
             </a>
           </li>
-          <li>
+         <li>
             <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
+              <i class="bi bi-circle"></i><span>Skills</span>
             </a>
-          </li>
+          </li> 
           <li>
             <a href="components-badges.html">
               <i class="bi bi-circle"></i><span>Badges</span>
@@ -182,7 +184,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('admin.profile') }}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
