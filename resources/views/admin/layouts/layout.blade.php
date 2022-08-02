@@ -9,6 +9,9 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  {{-- jQuery --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <!-- Favicons -->
   <link href="{{ url('admin/assets/img/favicon.png') }}" rel="icon">
   <link href="{{ url('admin/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">

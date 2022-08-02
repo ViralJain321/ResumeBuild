@@ -14,7 +14,7 @@
     </div>
     @endif  
 
-    <form action="{{ route('admin.content.hero') }}" method ='post' class="row g-3">
+    <form action="{{ route('hero') }}" method ='post' class="row g-3">
       
       @csrf
 

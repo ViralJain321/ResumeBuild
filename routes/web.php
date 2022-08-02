@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\content\HeroController;
+use App\Http\Controllers\Admin\content\PortfolioController;
+use App\Http\Controllers\Admin\content\SkillController;
 
 // use App\Http\Controllers\Admin\AdminController;
 
@@ -24,7 +26,7 @@ Route::get('/', function () {
 
 
 Route::group(['namespace' => 'App\Http\Controllers\front'], function(){
-Route::get('/home' , 'HomeController@fetchHeroData');
+Route::get('/home' , 'HomeController@fetchData');
 });
 
 
@@ -52,10 +54,21 @@ Route::group(['middleware' => 'admin'] , function(){
 
     //Contents
         //Hero Section
-    Route::group(['prefix' => 'content' ], function(){
-        Route::match(['GET' , 'POST' ] , 'hero' , [HeroController::class , 'hero'])->name('admin.content.hero');    
-    });   
+    
+        Route::match(['GET' , 'POST' ] , 'hero' , [HeroController::class , 'hero'])->name('hero');  
+        
+        //Skills Section
+            Route::prefix("/skills")->namespace("content")->group(function(){
+                 Route::match(['get' ,'post'] ,'showSkills' , 'SkillController@showSkills')->name('showSkills');   
+                 Route::match(['get' ,'post'] ,'addSkills' , 'SkillController@addSkills')->name('addSkills');   
+            });
 
+
+            //PortFolio Section
+            Route::prefix("/portfolio")->namespace("content")->group(function(){
+              Route::match(['get' , 'post'] ,'addCategory' , 'PortfolioController@addCategory')->name('addPortfolioCategory') ;
+              Route::match( ['get' , 'post'] , 'insertEntry' , 'PortfolioController@insertEntry')->name('insertPortfolioEntry');
+           });
 
 });
 

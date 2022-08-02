@@ -3,25 +3,75 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="{{ route("admin.dashboard") }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
       
+        {{-- -- HeroSection -- --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('hero') }}">
+          <i class="bi bi-person"></i>
+          <span>Hero</span>
+        </a>
+      </li>
+
+      {{-- Skills Section --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#skills-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Skills</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="skills-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href=" {{ route("addSkills")}} ">
+              <i class="bi bi-circle"></i><span>Add Skills</span>
+            </a>
+          </li>
+
+          <li>
+            <a href=" {{ route('showSkills')}} ">
+              <i class="bi bi-circle"></i><span>Show Skills</span>
+            </a>
+          </li>
+        </ul>
+      </li> 
+
+
+        {{-- PortFolio Section  --}}
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#portfolio-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-menu-button-wide"></i><span>PortFolio</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="portfolio-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href=" {{ route("addPortfolioCategory")}} ">
+                <i class="bi bi-circle"></i><span>Add a Category</span>
+              </a>
+            </li>
+  
+            <li>
+              <a href=" {{ route('insertPortfolioEntry')}} ">
+                <i class="bi bi-circle"></i><span>Insert a Entry</span>
+              </a>
+            </li>
+          </ul>
+        </li> 
+
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
+          {{-- <li>
             <a href="/admin/content/hero">
               <i class="bi bi-circle"></i><span>Hero</span>
             </a>
-          </li>
-         <li>
+          </li> --}}
+          
+        <li>
             <a href="components-accordion.html">
               <i class="bi bi-circle"></i><span>Skills</span>
             </a>
