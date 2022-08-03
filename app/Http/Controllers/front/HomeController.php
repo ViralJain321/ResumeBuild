@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Hero;
 use App\Models\Portfolio_category;
 use App\Models\Portfolio_entry;
+use App\Models\Service;
 use App\Models\Skill;
 
 class HomeController extends Controller
@@ -24,6 +25,8 @@ class HomeController extends Controller
 
         $portfolio_entries = Portfolio_entry::all();
 
+        $services = Service::all();
+
         // dd($skills->count());
 
         // dd(dd($skills[1]['name']));
@@ -37,7 +40,8 @@ class HomeController extends Controller
         return view('front.home' , ['hero' => $heros , 
                     'skills' => $skills,
                     'portfolio_categories' => $portfolio_categories,
-                    'portfolio_entries' => $portfolio_entries] );
+                    'portfolio_entries' => $portfolio_entries,
+                    'services' => $services] );
 
     }
 

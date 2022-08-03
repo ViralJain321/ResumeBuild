@@ -16,13 +16,9 @@ class SkillController extends Controller
             if($request->isMethod('post')){
 
                 if($request->has('delete')){
-                    // dd($request->all());
+                    
 
-                    $delete_field = Skill::where('name' , $request->name);
-
-                    // $delete_field = Skill::all();
-
-                    // dd($delete_field);
+                    $delete_field = Skill::where('name' , $request->name);                   
 
                     $delete_field->delete();
                     
@@ -31,16 +27,14 @@ class SkillController extends Controller
 
                 if($request->has('save')){
 
-                    // $this->validate($request ,[
-                    //     'name' => "required",
-                    //     'val' => "max:100|min:0|numeric",
-                    // ]);
+                    $this->validate($request ,[
+                        'name' => "required",
+                        'val' => "max:100|min:0|numeric",
+                    ]);
 
 
             
                     $update_field = Skill::where('name' , $request->name)->first();
-
-
 
                     $update_field->value = $request->val;
 

@@ -10,9 +10,6 @@
     <div class="card-body">
       <h5 class="card-title">Insert Portfolio Entry</h5>
 
-      <!-- General Form Elements -->
-
-
       <form action="{{ route('insertPortfolioEntry') }}" method="post" enctype="multipart/form-data" >
 
         @if (session('message'))
@@ -65,7 +62,7 @@
           </div>
         </div>
 
-      </form><!-- End General Form Elements -->
+      </form>
 
     </div>
   

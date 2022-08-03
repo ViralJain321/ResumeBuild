@@ -59,6 +59,15 @@
         </li> 
 
 
+        {{-- Services Section --}}
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('insertService') }}">
+            <i class="bi bi-person"></i>
+            <span>Services</span>
+          </a>
+        </li><!-- End Profile Page Nav -->
+
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
