@@ -9,6 +9,7 @@ use App\Models\Portfolio_category;
 use App\Models\Portfolio_entry;
 use App\Models\Service;
 use App\Models\Skill;
+use App\Models\Testimonial;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,8 @@ class HomeController extends Controller
 
         $services = Service::all();
 
+        $testimonials = Testimonial::all();
+
         // dd($skills->count());
 
         // dd(dd($skills[1]['name']));
@@ -41,7 +44,8 @@ class HomeController extends Controller
                     'skills' => $skills,
                     'portfolio_categories' => $portfolio_categories,
                     'portfolio_entries' => $portfolio_entries,
-                    'services' => $services] );
+                    'services' => $services,
+                    'testimonials' => $testimonials] );
 
     }
 

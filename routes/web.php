@@ -53,27 +53,41 @@ Route::prefix("/admin")->namespace("App\Http\Controllers\Admin")->group(function
         Route::post('updatePassword', 'AdminController@updatePassword')->name('admin.updatePassword');
 
 
+     
+    
+ 
         //Contents
-        //Hero Section
+        Route::namespace("content")->group(function (){
 
-        Route::match(['GET', 'POST'], 'hero', [HeroController::class, 'hero'])->name('hero');
 
-        //Skills Section
-        Route::prefix("/skills")->namespace("content")->group(function () {
+             //Hero Section
+            Route::match(['GET', 'POST'], 'hero', [HeroController::class, 'hero'])->name('hero');
+
+
+             //Skills Section
+        Route::prefix("/skills")->group(function () {
             Route::match(['get', 'post'], 'showSkills', 'SkillController@showSkills')->name('showSkills');
             Route::match(['get', 'post'], 'addSkills', 'SkillController@addSkills')->name('addSkills');
         });
 
 
-        //PortFolio Section
-        Route::prefix("/portfolio")->namespace("content")->group(function () {
+             //PortFolio Section
+        Route::prefix("/portfolio")->group(function () {
             Route::match(['get', 'post'], 'addCategory', 'PortfolioController@addCategory')->name('addPortfolioCategory');
             Route::match(['get', 'post'], 'insertEntry', 'PortfolioController@insertEntry')->name('insertPortfolioEntry');
         });
 
-        //Services Section
-        Route::namespace("content")->group(function () {
+                //Services Section
             Route::match(['get', 'post'],  'services', 'ServiceController@insertService')->name('insertService');
+
+            // Testimonial Section
+            Route::match(['get' , 'post'] , 'testimonials' , 'TestimonialController@insertTestimonial')->name('insertTestmonial');
+
+
+            // About Section
+            Route::match(['get' , 'post'] , 'about' , 'AboutController@about')->name('about');
+
+
         });
     });
 });

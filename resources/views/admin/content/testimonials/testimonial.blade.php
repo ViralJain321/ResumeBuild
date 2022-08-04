@@ -5,9 +5,9 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Insert a Service</h5>
+                    <h5 class="card-title">Insert a Testimonial</h5>
 
-                    <form action="{{ route('insertService') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('insertTestmonial') }}" method="post" enctype="multipart/form-data">
 
                         @if (session('message'))
                             <div class="alert alert-success" role="success">
@@ -18,13 +18,13 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Title:</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="title"
+                                <input type="text" name="name"
                                     class="form-control @error('title') border-red-500 @enderror"
-                                    value="{{ old('title') }}">
+                                    value="{{ old('name') }}">
 
-                                @error('title')
+                                @error('name')
                                     <div class="error text-danger">
                                         {{ $message }}
                                     </div>
@@ -35,11 +35,13 @@
 
 
                         <div class="row mb-3">
-                            <label for="inputNumber" class="col-sm-2 col-form-label">Service Logo:</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Designation:</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" name="logo" id="formFile" accept="image/*">
+                                <input type="text" name="designation"
+                                    class="form-control @error('designation') border-red-500 @enderror"
+                                    value="{{ old('designation') }}">
 
-                                @error('logo')
+                                @error('designation')
                                     <div class="error text-danger">
                                         {{ $message }}
                                     </div>
@@ -50,7 +52,22 @@
 
 
                         <div class="row mb-3">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Service Description:</label>
+                            <label for="inputNumber" class="col-sm-2 col-form-label">Image:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="file" name="image" id="formFile" accept="image/*">
+
+                                @error('image')
+                                    <div class="error text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Description:</label>
                             <div class="col-sm-10">
                                 <textarea name="description" class="form-control @error('description') border-red-500 @enderror"
                                     value="{{ old('description') }}" style="height: 100px"></textarea>
@@ -84,13 +101,14 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">All Services</h5>
+                    <h5 class="card-title">All Testimonials</h5>
 
                     <table class="table table-sm">
                         <thead>
                             <tr class="text-center">
                                 <th scope="col">#</th>
-                                <th scope="col">Title</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Designation</th>
                                 <th scope="col">Description</th>
                                 <th></th>
 
@@ -103,11 +121,11 @@
                                 $i = 1;
                             @endphp
 
-                            @foreach ($all_services as $service)
-                            <form action="{{route('insertService')}}" method="post">
+                            @foreach ($all_testimonials as $testimonial)
+                            <form action="{{route('insertTestmonial')}}" method="post">
 
-                                
-                              <input type="hidden" name='title' class="form-control text-center" value="{{ $service['title'] }}" > 
+
+                              <input type="hidden" name='id' class="form-control text-center" value="{{ $testimonial['id'] }}" > 
 
                                 @csrf
                                 <tr class="text-center">
@@ -116,8 +134,9 @@
 
 
                                        
-                                        <td>{{$service['title']}}</td>
-                                        <td> {{ $service['description'] }}</td>
+                                        <td>{{ $testimonial['name'] }}</td>
+                                        <td>{{ $testimonial['designation'] }}</td>
+                                        <td>{{ $testimonial['description'] }}</td>
 
                                         <td align="center"> <button type="submit" class="btn btn-primary" name='delete' value="delete"
                                                 id="delete">Delete</button> </td>
