@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ url("front/assets/img/favicon.png") }}" rel="icon">
-    <link href="{{ url("front/assets/img/apple-touch-icon.png") }}" rel="apple-touch-icon">
+    <link href="{{ url('front/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ url('front/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -19,15 +19,15 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{ url("front/assets/vendor/aos/aos.css") }}"  rel="stylesheet">
-    <link href="{{ url("front/assets/vendor/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
-    <link href="{{ url("front/assets/vendor/bootstrap-icons/bootstrap-icons.css") }}" rel="stylesheet">
-    <link href="{{ url("front/assets/vendor/boxicons/css/boxicons.min.css") }}" rel="stylesheet">
-    <link href="{{ url("front/assets/vendor/glightbox/css/glightbox.min.css") }}" rel="stylesheet">
-    <link href="{{ url("front/assets/vendor/swiper/swiper-bundle.min.css") }}" rel="stylesheet">
+    <link href="{{ url('front/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ url('front/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url('front/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ url('front/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ url('front/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url('front/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{ url("front/assets/css/style.css") }}" rel="stylesheet">
+    <link href="{{ url('front/assets/css/style.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: MyResume - v4.8.1
@@ -74,11 +74,32 @@
             <h1>{{ $hero['name'] }}</h1>
             <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
             <div class="social-links">
-                <a href="{{ $hero['twitter_id'] }}" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="{{ $hero['facebook_id'] }}" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+
+                @if ($hero['twitter_id'] != null)
+                    <a href="{{ $hero['twitter_id'] }}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                @endif
+
+                @if ($hero['facebook_id'] != null)
+                    <a href="{{ $hero['facebook_id'] }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                @endif
+
+                @if ($hero['instagram_id'] != null)
+                    <a href="{{ $hero['instagram_id'] }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                @endif
+
+                @if ($hero['skype_id'] != null)
+                    <a href="{{ $hero['skype_id'] }}" class="google-plus"><i class="bx bxl-skype"></i></a>
+                @endif
+
+                @if ($hero['linkedIn_id'] != null)
+                    <a href="{{ $hero['linkedIn_id'] }}" class="linkedin"><i class="bx bxl-linkedIn"></i></a>
+                @endif
+
+
+
+                {{-- <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                 <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}
             </div>
         </div>
     </section><!-- End Hero -->
@@ -89,6 +110,8 @@
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
 
+
+
                 <div class="section-title">
                     <h2>About</h2>
                     <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
@@ -97,50 +120,70 @@
                 </div>
 
                 <div class="row">
+
+                    {{-- @php
+                    dd($about);
+                @endphp --}}
+
+
                     <div class="col-lg-4">
-                        <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+                        <img src="front/assets/img/{{ $about['image'] }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-8 pt-4 pt-lg-0 content">
-                        <h3>UI/UX Designer &amp; Web Developer.</h3>
+                        <h3>{{ ucfirst($about['curr_designation']) }}</h3>
                         <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore
-                            magna aliqua.
+                            {{ ucfirst($about['tagline']) }}
                         </p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <ul>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May
-                                            1995</span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
-                                        <span>www.example.com</span>
-                                    </li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456
-                                            7890</span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York,
-                                            USA</span></li>
+                                    <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong>
+                                        <span>{{ date('d-F-Y', strtotime($about['dob'])) }}
+                                        </span></li>
+
+
+                                    @if ($about['contact_no'] != null)
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong>
+                                            <span>{{ $about['contact_no'] }}</span></li>
+                                    @endif
+
+                                    @if ($about['city'] != null)
+                                        <li><i class="bi bi-chevron-right"></i> <strong>City:</strong>
+                                            <span>{{ ucfirst($about['city']) }}</span></li>
+                                    @endif
+
+
                                 </ul>
                             </div>
                             <div class="col-lg-6">
                                 <ul>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span>
-                                    </li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong>
-                                        <span>email@example.com</span>
-                                    </li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong>
-                                        <span>Available</span>
-                                    </li>
+
+                                    @if ($about['degree'] != null)
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong>
+                                            <span>{{ ucfirst($about['degree']) }}</span>
+                                        </li>
+                                    @endif
+
+                                    @if ($about['email'] != null)
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
+                                            <span>{{ $about['email'] }}</span>
+                                        </li>
+                                    @endif
+
+                                    @if ($about['freelance'] != null)
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong>
+                                            <span>{{ ucfirst($about['freelance']) }}</span>
+                                        </li>
+                                    @endif
+
                                 </ul>
                             </div>
                         </div>
                         <p>
-                            Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt
-                            adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-                            Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus
-                            itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis
-                            culpa magni laudantium dolores.
+                            @if ($about['about_yourself'] != null)
+                                {{ $about['about_yourself'] }}
+                            @endif
+
                         </p>
                     </div>
                 </div>
@@ -222,13 +265,14 @@
                             @endphp --}}
                     <div class="col-lg-6">
 
-                        @for ($i = 0; $i < ($skills->count() +1) / 2; $i++)
+                        @for ($i = 0; $i < ($skills->count() ) / 2; $i++)
                             <div class="progress">
                                 <span class="skill">{{ $skills[$i]['name'] }} <i
                                         class="val">{{ $skills[$i]['value'] }}%</i></span>
                                 <div class="progress-bar-wrap">
                                     <div class="progress-bar" role="progressbar"
-                                        aria-valuenow="{{ $skills[$i]['value'] }}" aria-valuemin="0" aria-valuemax="100">
+                                        aria-valuenow="{{ $skills[$i]['value'] }}" aria-valuemin="0"
+                                        aria-valuemax="100">
                                     </div>
                                 </div>
                             </div>
@@ -239,13 +283,14 @@
 
                     <div class="col-lg-6">
 
-                        @for ($i = $skills->count() / 2 +1 ; $i < $skills->count(); $i++)
+                        @for ($i = $skills->count() / 2 ; $i < $skills->count(); $i++)
                             <div class="progress">
                                 <span class="skill">{{ $skills[$i]['name'] }} <i
                                         class="val">{{ $skills[$i]['value'] }}%</i></span>
                                 <div class="progress-bar-wrap">
                                     <div class="progress-bar" role="progressbar"
-                                        aria-valuenow="{{ $skills[$i]['value'] }}" aria-valuemin="0" aria-valuemax="100">
+                                        aria-valuenow="{{ $skills[$i]['value'] }}" aria-valuemin="0"
+                                        aria-valuemax="100">
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +298,7 @@
 
                     </div>
 
-           
+
                 </div>
         </section><!-- End Skills Section -->
 
@@ -270,54 +315,56 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <h3 class="resume-title">Sumary</h3>
+                        <h3 class="resume-title">Summary</h3>
                         <div class="resume-item pb-0">
-                            <h4>Brandon Johnson</h4>
-                            <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing
+                            <h4>{{ $resume['name'] }}</h4>
+                            <p><em>{{ $resume['summary_description'] }}
+                                    {{-- Innovative and deadline-driven Graphic Designer with 3+ years of experience designing
                                     and developing user-centered digital/print marketing material from initial concept
-                                    to final, polished deliverable.</em></p>
-                            <ul>
+                                    to final, polished deliverable. --}}
+                                </em></p>
+                            {{-- <ul>
                                 <li>Portland par 127,Orlando, FL</li>
                                 <li>(123) 456-7891</li>
                                 <li>alice.barkley@example.com</li>
-                            </ul>
+                            </ul> --}}
                         </div>
 
                         <h3 class="resume-title">Education</h3>
                         <div class="resume-item">
-                            <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                            <h5>2015 - 2016</h5>
-                            <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                            <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero
-                                voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
+                            <h4>{{ $resume['education_course_name'] }}</h4>
+                            <h5>{{ $resume['education_st_year'] }} - {{ $resume['education_end_year'] }}</h5>
+                            <p><em>{{ $resume['education_institute_name'] }} </em></p>
+                            <p>{{ $resume['education_description'] }}</p>
                         </div>
-                        <div class="resume-item">
+                        {{-- <div class="resume-item">
                             <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
                             <h5>2010 - 2014</h5>
                             <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
                             <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel
                                 ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae
                                 consequatur neque etlon sader mart dila</p>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-lg-6">
                         <h3 class="resume-title">Professional Experience</h3>
                         <div class="resume-item">
-                            <h4>Senior graphic design specialist</h4>
-                            <h5>2019 - Present</h5>
-                            <p><em>Experion, New York, NY </em></p>
+                            <h4>{{ $resume['work_role'] }}</h4>
+                            <h5>{{ $resume['work_st_year'] }} - {{ $resume['work_end_year'] }}</h5>
+                            <p><em>{{ $resume['work_place'] }} </em></p>
                             <ul>
-                                <li>Lead in the design, development, and implementation of the graphic, layout, and
+                                {{ $resume['work_description'] }}
+                                {{-- <li>Lead in the design, development, and implementation of the graphic, layout, and
                                     production communication materials</li>
                                 <li>Delegate tasks to the 7 members of the design team and provide counsel on all
                                     aspects of the project. </li>
                                 <li>Supervise the assessment of all graphic materials in order to ensure quality and
                                     accuracy of the design</li>
                                 <li>Oversee the efficient use of production project budgets ranging from $2,000 -
-                                    $25,000</li>
+                                    $25,000</li> --}}
                             </ul>
                         </div>
-                        <div class="resume-item">
+                        {{-- <div class="resume-item">
                             <h4>Graphic design specialist</h4>
                             <h5>2017 - 2018</h5>
                             <p><em>Stepping Stone Advertising, New York, NY</em></p>
@@ -329,7 +376,7 @@
                                 <li>Created 4+ design presentations and proposals a month for clients and account
                                     managers</li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -353,7 +400,8 @@
                             <li data-filter="*" class="filter-active">All</li>
 
                             @foreach ($portfolio_categories as $portfolio_category)
-                                     <li data-filter=".filter-{{$portfolio_category['name']}}">{{$portfolio_category['name']}}</li>
+                                <li data-filter=".filter-{{ $portfolio_category['name'] }}">
+                                    {{ $portfolio_category['name'] }}</li>
                             @endforeach
 
                         </ul>
@@ -363,25 +411,27 @@
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
                     @foreach ($portfolio_entries as $portfolio_entry)
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-{{$portfolio_entry['category']}}">
-                        <div class="portfolio-wrap">
-                            <img src="front/assets/img/{{$portfolio_entry['img']}}" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>{{$portfolio_entry['name']}}</h4>
-                                <p>{{$portfolio_entry['category']}}</p>
-                                <div class="portfolio-links">
-                                    <a href="front/assets/img/{{$portfolio_entry['img']}}" data-gallery="portfolioGallery"
-                                        class="portfolio-lightbox" title="{{$portfolio_entry['name']}}"><i class="bx bx-plus"></i></a>
-                                    <a href="portfolio-details.html" class="portfolio-details-lightbox"
-                                        data-glightbox="type: external" title="Portfolio Details"><i
-                                            class="bx bx-link"></i></a>
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-{{ $portfolio_entry['category'] }}">
+                            <div class="portfolio-wrap">
+                                <img src="front/assets/img/{{ $portfolio_entry['img'] }}" class="img-fluid"
+                                    alt="">
+                                <div class="portfolio-info">
+                                    <h4>{{ $portfolio_entry['name'] }}</h4>
+                                    <p>{{ $portfolio_entry['category'] }}</p>
+                                    <div class="portfolio-links">
+                                        <a href="front/assets/img/{{ $portfolio_entry['img'] }}"
+                                            data-gallery="portfolioGallery" class="portfolio-lightbox"
+                                            title="{{ $portfolio_entry['name'] }}"><i class="bx bx-plus"></i></a>
+                                        <a href="portfolio-details.html" class="portfolio-details-lightbox"
+                                            data-glightbox="type: external" title="Portfolio Details"><i
+                                                class="bx bx-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
 
-                  
+
 
                     {{-- <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                         <div class="portfolio-wrap">
@@ -538,25 +588,26 @@
                 <div class="row">
 
                     @foreach ($services as $service)
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in"
-                    data-aos-delay="100">
-                     <div class="icon-box iconbox-blue">
-                        <div class="icon">
-                            <svg width="100" height="100" viewBox="0 0 600 600"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <span class="border-6">
-                                    <img src="/front/assets/img/logos/{{$service['logo']}}" height="50" width="50" alt="Logo Not Available">
-                                  </span>
-                            </svg>
-                        </div> 
-                      
-                      
-                        <h4><a href="">{{$service['title']}}</a></h4>
-                        <p>{{ $service['description'] }}</p>
-                    </div>
-                </div>
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in"
+                            data-aos-delay="100">
+                            <div class="icon-box iconbox-blue">
+                                <div class="icon">
+                                    <svg width="100" height="100" viewBox="0 0 600 600"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <span class="border-6">
+                                            <img src="/front/assets/img/logos/{{ $service['logo'] }}" height="50"
+                                                width="50" alt="Logo Not Available">
+                                        </span>
+                                    </svg>
+                                </div>
+
+
+                                <h4><a href="">{{ $service['title'] }}</a></h4>
+                                <p>{{ $service['description'] }}</p>
+                            </div>
+                        </div>
                     @endforeach
-                   
+
 
                     {{-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
                         data-aos-delay="200">
@@ -660,21 +711,21 @@
                     <div class="swiper-wrapper">
 
                         @foreach ($testimonials as $testimonial)
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="front/assets/img/testimonials/{{$testimonial['image']}}" class="testimonial-img"
-                                    alt="">
-                                <h3>{{$testimonial['name']}}</h3>
-                                <h4>{{$testimonial['desgnation']}}</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        {{$testimonial['description']}}
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <img src="front/assets/img/testimonials/{{ $testimonial['image'] }}"
+                                        class="testimonial-img" alt="">
+                                    <h3>{{ $testimonial['name'] }}</h3>
+                                    <h4>{{ $testimonial['desgnation'] }}</h4>
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                        {{ $testimonial['description'] }}
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div><!-- End testimonial item -->
                         @endforeach
-                     
+
 
                         {{-- <div class="swiper-slide">
                             <div class="testimonial-item">
@@ -849,18 +900,18 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{ url("front/assets/vendor/purecounter/purecounter_vanilla.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/aos/aos.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/glightbox/js/glightbox.min.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/isotope-layout/isotope.pkgd.min.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/swiper/swiper-bundle.min.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/typed.js/typed.min.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/waypoints/noframework.waypoints.js") }}"></script>
-    <script src="{{ url("front/assets/vendor/php-email-form/validate.js") }}"></script>
+    <script src="{{ url('front/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/typed.js/typed.min.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+    <script src="{{ url('front/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{ url("front/assets/js/main.js") }}"></script>
+    <script src="{{ url('front/assets/js/main.js') }}"></script>
 
 </body>
 

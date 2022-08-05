@@ -21,7 +21,7 @@
                             <label for="inputText" class="col-sm-2 col-form-label">Name:</label>
                             <div class="col-sm-10">
                                 <input type="text" name="name"
-                                    class="form-control @error('title') border-red-500 @enderror"
+                                    class="form-control @error('name') border-red-500 @enderror"
                                     value="{{ old('name') }}">
 
                                 @error('name')

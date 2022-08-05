@@ -61,7 +61,7 @@ Route::prefix("/admin")->namespace("App\Http\Controllers\Admin")->group(function
 
 
              //Hero Section
-            Route::match(['GET', 'POST'], 'hero', [HeroController::class, 'hero'])->name('hero');
+            Route::match(['GET', 'POST'], 'hero', 'HeroController@hero')->name('hero');
 
 
              //Skills Section
@@ -86,6 +86,10 @@ Route::prefix("/admin")->namespace("App\Http\Controllers\Admin")->group(function
 
             // About Section
             Route::match(['get' , 'post'] , 'about' , 'AboutController@about')->name('about');
+
+
+            //Reusme Section
+            Route::match(['get' ,'post'] , 'resume' , 'ResumeController@resume')->name('resume');
 
 
         });

@@ -20,7 +20,14 @@
 
       <div class="col-12">
         <label for="inputNanme4" class="form-label">Your Name</label>
-        <input type="text" name="name" class="form-control" id="inputNanme4" value="{{ $hero['name'] }}">
+        <input type="text" name="name" class="form-control @error('name') border-red-500 @enderror" id="inputNanme4" value="{{ $hero['name'] }}" >
+
+        @error('name')
+        <div class="error text-danger">
+            {{ $message }}
+        </div>
+        @enderror
+
       </div>
       <div class="col-12">
         <label for="inputEmail4" class="form-label">Twitter ID:</label>

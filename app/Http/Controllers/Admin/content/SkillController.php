@@ -11,14 +11,14 @@ class SkillController extends Controller
     public function showSkills(Request $request){
 
         
-           
+        //    dd($request->all());
 
             if($request->isMethod('post')){
 
                 if($request->has('delete')){
                     
 
-                    $delete_field = Skill::where('name' , $request->name);                   
+                    $delete_field = Skill::where('name' , $request->delete_name);                   
 
                     $delete_field->delete();
                     

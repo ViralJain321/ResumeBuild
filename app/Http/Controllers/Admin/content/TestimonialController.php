@@ -23,16 +23,9 @@ class TestimonialController extends Controller
                 // dd($delete_testimonial);
 
                 if(!is_null($delete_testimonial->image)){
-
-                
-
                 if(File::exists(public_path('/front/assets/img/testimonials/' . $delete_testimonial->image))){
-                    dd('/front/assets/img/testimonials/' . $delete_testimonial->image);
-                //    File::delete(public_path('/front/assets/img/testimonials/' . $delete_testimonial->image));
+                    File::delete('/front/assets/img/testimonials/' . $delete_testimonial->image);
                 }
-
-            }else{
-                dd("hello123");
             }
 
                 

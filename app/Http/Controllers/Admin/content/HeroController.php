@@ -18,8 +18,9 @@ class HeroController extends Controller
 
             $this->validate($request,  [
                 'name' => "required",
-                'twitter_id' => 'url'
+                // 'twitter_id' => '|url'
             ]);
+
 
             $hero = Hero::where('id', 1)->first();
  
@@ -44,6 +45,6 @@ class HeroController extends Controller
 
         $hero = Hero::all()->first()->getAttributes();
 
-         return view('admin.content.hero' , ['hero' => $hero]);
+         return view('admin.content.hero.hero' , ['hero' => $hero]);
     }
 }
