@@ -12,11 +12,8 @@ class ServiceController extends Controller
     public function insertService(Request $request){
 
 
-        
-
         if($request->isMethod('post')){
 
-         
 
             if($request->has('delete')){
 

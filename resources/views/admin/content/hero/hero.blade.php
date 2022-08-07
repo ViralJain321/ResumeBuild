@@ -7,7 +7,6 @@
   <div class="card-body">
     <h5 class="card-title">Hero Section</h5>
 
-    <!-- Vertical Form -->
     @if(session('message'))
       <div class="alert alert-success" role="alert">
         {{ session('message') }}
@@ -53,7 +52,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-secondary">Reset</button>
       </div>
-    </form><!-- Vertical Form -->
+    </form>
 
   </div>
 </div>

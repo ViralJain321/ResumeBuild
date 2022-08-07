@@ -20,7 +20,6 @@ class TestimonialController extends Controller
 
                 $delete_testimonial = Testimonial::where('id' , $request->id)->first();
 
-                // dd($delete_testimonial);
 
                 if(!is_null($delete_testimonial->image)){
                 if(File::exists(public_path('/front/assets/img/testimonials/' . $delete_testimonial->image))){
@@ -33,7 +32,6 @@ class TestimonialController extends Controller
 
              }else{
 
-                // dd($request->all());
 
                 $this->validate($request ,[
                     'name' => 'required',
@@ -62,9 +60,6 @@ class TestimonialController extends Controller
 
 
                 $new_testimonial->save();
-
-
-                
 
 
              }

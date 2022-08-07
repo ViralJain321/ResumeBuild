@@ -36,7 +36,6 @@ Route::group(['namespace' => 'App\Http\Controllers\front'], function () {
 
 Route::prefix("/admin")->namespace("App\Http\Controllers\Admin")->group(function () {
 
-
     Route::match(['GET', 'POST'], "login", 'AdminController@login');
 
     Route::group(['middleware' => 'admin'], function () {

@@ -16,7 +16,7 @@ class ResumeController extends Controller
 
         if($request->isMethod('post')){
 
-            // dd($request->all());
+           
             $this->validate($request ,[
                 'name' => 'required',
                 'edu_course_name' => 'required',
@@ -58,8 +58,7 @@ class ResumeController extends Controller
 
         }
 
-        // dd($resume_details);
-
+   
         return view('admin.content.resume.resume' , ['resume_details' => $resume_details]);
     }
 }

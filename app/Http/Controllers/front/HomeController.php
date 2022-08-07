@@ -18,8 +18,6 @@ class HomeController extends Controller
     
     public function fetchData(){
 
-      
-
         $heros = Hero::all()->first()->getAttributes();
 
         $skills = Skill::all();
@@ -36,17 +34,6 @@ class HomeController extends Controller
 
         $resumes = Resume::all()->first()->getAttributes();
 
-        // dd($abouts);
-
-        // dd($skills->count());
-
-        // dd(dd($skills[1]['name']));
-
-        // $heros = json_encode($heros);
-
-
-        // dd($h);
-        // dd($heros);
 
         return view('front.home' , ['hero' => $heros , 
                     'skills' => $skills,

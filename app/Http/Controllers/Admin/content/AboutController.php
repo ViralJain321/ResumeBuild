@@ -32,7 +32,6 @@ class AboutController extends Controller
                 $about_details = new About(['curr_designation' => request('curr_designationz') ]);
             }
 
-            // dd($request->all());
             
             if(($request->profile_image) == null){
                 if(File::exists(public_path('/front/assets/img/' . $about_details->image))){
@@ -42,9 +41,7 @@ class AboutController extends Controller
             
 
 
-            // dd($request->all());
-            // dd($about_details);
-
+         
             
             $originalFile = null;
 
@@ -78,19 +75,12 @@ class AboutController extends Controller
             $about_details->about_yourself = $request->about_yourself;
 
 
-            // dd($about_details);
-
-
             $about_details->save();
-
-
-
-
 
 
         }
 
-        // dd($about_details);
+
 
         return view('admin.content.about.about' ,['about_details' => $about_details]);
     }

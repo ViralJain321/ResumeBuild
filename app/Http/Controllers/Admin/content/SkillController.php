@@ -10,8 +10,6 @@ class SkillController extends Controller
 {
     public function showSkills(Request $request){
 
-        
-        //    dd($request->all());
 
             if($request->isMethod('post')){
 
@@ -47,9 +45,7 @@ class SkillController extends Controller
 
             $all_skills = Skill::all();
 
-            // dd($all_skills);
-
-
+       
 
 
 

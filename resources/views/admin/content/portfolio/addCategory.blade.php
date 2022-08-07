@@ -6,17 +6,13 @@
                 <div class="card-body">
                     <h5 class="card-title">Add Portfolio Category</h5>
 
-                    <!-- Vertical Form -->
-                    {{-- @if (session('message'))
+                    @if (session('message'))
                         <div class="alert alert-success" role="alert">
                             {{ session('message') }}
                         </div>
-                    @endif --}}
+                    @endif
 
                  
-
-                   
-
                     <form action="{{ route('addPortfolioCategory') }}" method='post' class="row g-3">
 
                         @csrf
@@ -29,12 +25,9 @@
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            {{-- <button type="reset" class="btn btn-secondary">Reset</button> --}}
+                          
                         </div>
-                    </form><!-- Vertical Form -->
-
-
-                    
+                    </form>
 
                 </div>
             </div>

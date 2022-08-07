@@ -16,9 +16,6 @@ class AdminController extends Controller
     }
 
 
-  
-
-
     public function profile(){
         return view('admin.settings.profile');
     }
@@ -26,10 +23,6 @@ class AdminController extends Controller
     public function editProfile(Request $request){
 
        $adm = Admin::where(  'email' , auth()->guard('admin')->user()->email )->first();
-
-    //    dd($adm);
-        // dd($request->name);
-        // dd($request->all());
 
        $adm->name = $request->name;
 
@@ -56,16 +49,11 @@ class AdminController extends Controller
 
         return back()->with("status", "Password changed successfully!");
 
-
-
-
-    }
-
+}
 
 
     public function login(Request $request){
 
-   
 
         if($request->isMethod('post')){
 

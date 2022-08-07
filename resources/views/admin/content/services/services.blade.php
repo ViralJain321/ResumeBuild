@@ -113,8 +113,6 @@
                                 <tr class="text-center">
                                     <div class="col-4">
                                         <th scope="row" align="text-center">{{ $i++ }}
-
-
                                        
                                         <td>{{$service['title']}}</td>
                                         <td> {{ $service['description'] }}</td>

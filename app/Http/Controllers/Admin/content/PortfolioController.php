@@ -25,10 +25,7 @@ class PortfolioController extends Controller
             $category->name = $category_name;
             $category->save();
             
-            // dd($request->all());
-
-
-
+        
 
         }
 
@@ -57,11 +54,9 @@ class PortfolioController extends Controller
                 $file->move($destinationPath, $filename); 
                }
 
-            //    dd($request->all());
-            // dd($originalFile);
+           
 
             $new_entry = new Portfolio_entry();
-
 
 
             $new_entry-> name = $request->name;
